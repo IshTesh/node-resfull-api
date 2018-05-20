@@ -24,9 +24,10 @@ MongoClient.connect(url, (err, client) => {
     
     db.collection('Todos')
         .find()
-        .count()
-        .then((count) => {
-            console.log(`Todos Count: ${count}`);
+        .toArray()
+        .then((docs) => {
+            console.log('Todos');
+            console.log(JSON.stringify(docs, undefined, 2));
         }).catch((err) => {
             console.log('Unable to find Todos', err);
         });
